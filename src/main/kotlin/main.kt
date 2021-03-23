@@ -6,11 +6,13 @@ import com.jessecorbett.diskord.dsl.command
 import com.jessecorbett.diskord.dsl.commands
 import kotlin.random.Random
 
-private val BOT_TOKEN =try {
+private val BOT_TOKEN = try {
     ClassLoader.getSystemResource("dataToken.txt").readText().trim()
 } catch (error: Exception) {
-    throw RuntimeException("Failed to load bot token. Make sure to create a file named bot-token.txt in" +
-            " src/main/resources and paste the bot token into that file.", error)
+    throw RuntimeException(
+        "Failed to load bot token. Make sure to create a file named bot-token.txt in" +
+                " src/main/resources and paste the bot token into that file.", error
+    )
 }
 
 const val PERMISSION_INTEGER = 2148005952
