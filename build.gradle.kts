@@ -8,6 +8,14 @@ plugins {
 group = "me.arcbu"
 version = "1.0-SNAPSHOT"
 
+tasks.register("stage"){
+    dependsOn("installDist")
+}
+
+//task stage(dependsOn: ['build', 'clean'])
+//build.mustRunAfter clean
+
+
 repositories {
     mavenCentral()
     jcenter()
