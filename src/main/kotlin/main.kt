@@ -6,7 +6,13 @@ import com.jessecorbett.diskord.dsl.command
 import com.jessecorbett.diskord.dsl.commands
 import kotlin.random.Random
 
-const val BOT_TOKEN = "ODIzNjc5OTQ4MjUwMjg0MDcy.YFkVug.2Bg47rq4oWzujDivTKvE1RgwNY0"
+private val BOT_TOKEN =try {
+    ClassLoader.getSystemResource("dataToken.txt").readText().trim()
+} catch (error: Exception) {
+    throw RuntimeException("Failed to load bot token. Make sure to create a file named bot-token.txt in" +
+            " src/main/resources and paste the bot token into that file.", error)
+}
+
 const val PERMISSION_INTEGER = 2148005952
 
 suspend fun main() {
@@ -45,13 +51,7 @@ suspend fun main() {
                 var currentIndex = getRandomIndex(guildMembers.size)
                 reply("Vô dale em ${guildMembers[currentIndex].user!!.username}");
             }
-            command("violencia") {
-                delete()
-                var guild = guildList.get(this.guildId!!);
-                var guildMembers = guild.getMembers(1000);
-                var currentIndex = getRandomIndex(guildMembers.size)
-                reply("Vô dale em ${guildMembers[currentIndex].user!!.username}");
-            }
+
             command("disputa") {
                 delete()
                 var guild = guildList.get(this.guildId!!);
